@@ -4,11 +4,6 @@
              xmlns:local="clr-namespace:Xam.Forms.UpdatePrompt"
              x:Class="Xam.Forms.UpdatePrompt.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-    	<Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <local:UpdatePrompt ButtonText="Download" />
 
 </ContentPage>
