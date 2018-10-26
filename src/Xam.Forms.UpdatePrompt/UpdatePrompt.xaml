@@ -5,12 +5,13 @@
              x:Class="Xam.Forms.UpdatePrompt.UpdatePrompt"
              IsVisible="False">
 
-    <Grid BackgroundColor="Black" Opacity="0.5" />
+    <Grid BackgroundColor="Black" Opacity="0.7" />
     <Frame x:Name="content" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White">
-        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <Label x:Name="lbl" HorizontalOptions="Center"  />
-            <Button x:Name="btn" HorizontalOptions="Center"  />
-        </StackLayout>
+        <Grid>
+            <Label x:Name="lbl" VerticalOptions="Center" HorizontalOptions="Center"  />
+            <Button x:Name="btn" Clicked="OnButtonClicked" HorizontalOptions="Start" VerticalOptions="End"  />
+            <Button Text="Cancel" Clicked="OnCancelClicked" HorizontalOptions="End" VerticalOptions="End" />
+        </Grid>
     </Frame>
-    
+
 </Grid>

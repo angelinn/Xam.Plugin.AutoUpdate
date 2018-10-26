@@ -12,11 +12,29 @@ namespace Xam.Forms.UpdatePrompt
 		public MainPage()
 		{
 			InitializeComponent();
+            
 		}
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+
+            bool result = await DisplayAlert("New version", "An update of the application is available.", "Download", "Cancel");
+            if (result)
+                Device.OpenUri(new Uri("http://google.bg"));
+        }
 
         private void UpdatesCheck(object sender, UpdatesCheckArgs e)
         {
-            e.UpdateTask = async () => { await Task.Delay(1000); return true; };
+            e.UpdateTask = async () =>
+            {
+                await Task.Delay(1000);
+                return new UpdatesCheckResponse
+                {
+                    IsNewVersionAvailable = true,
+                    DownloadUrl = "http://google.bg"
+                };
+            };
         }
     }
 }
