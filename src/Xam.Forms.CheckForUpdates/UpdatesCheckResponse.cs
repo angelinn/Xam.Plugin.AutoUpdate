@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Xam.Forms.UpdatePrompt
+namespace Xam.Forms.CheckForUpdates
 {
     public class UpdatesCheckResponse
     {

@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Xam.Forms.UpdatePrompt
+namespace Xam.Forms.CheckForUpdates
 {
     public class UpdateManager
     {
