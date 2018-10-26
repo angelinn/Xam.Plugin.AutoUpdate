@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Xam.Plugin.CheckForUpdates</id>
+    <version>1.0.0</version>
+    <authors>Angelin Nedelchev</authors>
+    <owners>Angelin Nedelchev</owners>
+    <licenseUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/</projectUrl>
+    <iconUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/blob/master/src/nuget_icon.png?raw=true</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A simple plugin that uses the native Xamarin Forms alert to provide an easy update checking service.</description>
+    <releaseNotes>Initial version.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>check for updates prompt alert xamarin xam forms android windows uwp ios iphone</tags>
+    <dependencies>
+      <group targetFramework="netstandard1.4">
+        <dependency id="Xamarin.Forms" version="2.5.1.527436" />
+      </group>
+    </dependencies>
+  </metadata>
+
+  <files>
+    <file src="Xam.Plugin.CheckForUpdates\bin\Debug\netstandard1.4\Xam.Plugin.CheckForUpdates.dll" target="lib\netstandard1.4\Xam.Plugin.CheckForUpdates.dll" />
+  </files>
+</package>
