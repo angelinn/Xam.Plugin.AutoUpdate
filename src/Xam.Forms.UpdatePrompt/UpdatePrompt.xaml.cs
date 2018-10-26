@@ -57,7 +57,7 @@ namespace Xam.Forms.UpdatePrompt
             base.OnSizeAllocated(width, height);
 
             content.HeightRequest = height / 3;
-            content.WidthRequest = width / 3;
+            content.WidthRequest = (2 * width) / 3;
         }
 
         protected override async void OnParentSet()
