@@ -13,12 +13,16 @@ namespace Xam.Forms.UpdatePrompt
 	public partial class UpdatePrompt : Grid
 	{
         private static Button button;
+
 		public UpdatePrompt ()
 		{
 			InitializeComponent ();
             button = btn;
 		}
+        
+        
 
+        public event EventHandler<UpdatesCheckArgs> UpdatesCheckDelegate;
         public static readonly BindableProperty ButtonTextProperty =
             BindableProperty.Create("ButtonText", typeof(string), typeof(UpdatePrompt), null, propertyChanged: OnButtonTextChanged);
         
@@ -39,6 +43,14 @@ namespace Xam.Forms.UpdatePrompt
 
             content.HeightRequest = height / 3;
             content.WidthRequest = width / 3;
+        }
+
+        protected override async void OnParentSet()
+        {
+            UpdatesCheckArgs args = new UpdatesCheckArgs();
+            UpdatesCheckDelegate.Invoke(this, args);
+
+            IsVisible = await args.UpdateTask();
         }
     }
 }
