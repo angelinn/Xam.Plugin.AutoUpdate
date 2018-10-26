@@ -5,12 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="2.5.1.527436" />
+    <None Remove="UpdateManager.cs~RFfebe63c.TMP" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="UpdatePrompt.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
+    <PackageReference Include="Xamarin.Forms" Version="2.5.1.527436" />
   </ItemGroup>
 </Project>
