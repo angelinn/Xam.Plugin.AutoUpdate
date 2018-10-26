@@ -15,6 +15,7 @@ namespace Xam.Forms.UpdatePrompt
         private readonly Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction;
 
         private bool didCheck;
+        private readonly Page mainPage;
         
         public UpdateManager(string title, string message, string confirm, string cancel, Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction)
         {
@@ -24,7 +25,8 @@ namespace Xam.Forms.UpdatePrompt
             this.cancel = cancel;
             this.checkForUpdatesFunction = checkForUpdatesFunction;
 
-            App.Current.MainPage.Appearing += OnMainPageAppearing;
+            mainPage = Application.Current.MainPage;
+            mainPage.Appearing += OnMainPageAppearing;
         }
 
         private async void OnMainPageAppearing(object sender, EventArgs e)
@@ -35,13 +37,13 @@ namespace Xam.Forms.UpdatePrompt
                 await CheckForUpdatesAsync();
             }
         }
-
+        
         private async Task CheckForUpdatesAsync()
         {
             UpdatesCheckResponse response = await checkForUpdatesFunction();
             if (response.IsNewVersionAvailable)
             {
-                if (await App.Current.MainPage.DisplayAlert(title, message, confirm, cancel))
+                if (await mainPage.DisplayAlert(title, message, confirm, cancel))
                     Device.OpenUri(new Uri(response.DownloadUrl));
             }
         }
