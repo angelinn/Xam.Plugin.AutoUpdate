@@ -32,5 +32,13 @@ namespace Xam.Forms.UpdatePrompt
         {
             button.Text = newValue.ToString();
         }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+
+            content.HeightRequest = height / 3;
+            content.WidthRequest = width / 3;
+        }
     }
 }
