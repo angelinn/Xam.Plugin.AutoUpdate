@@ -7,8 +7,12 @@ namespace Xam.Forms.UpdatePrompt
 {
     public class UpdatesCheckArgs
     {
+        public Func<Task<UpdatesCheckResponse>> UpdateTask { get; set; }
+    }
+
+    public class UpdatesCheckResponse
+    {
         public bool IsNewVersionAvailable { get; set; }
-        public Func<Task<bool>> UpdateTask { get; set; }
+        public string DownloadUrl { get; set; }
     }
 }
-   

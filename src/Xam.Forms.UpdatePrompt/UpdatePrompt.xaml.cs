@@ -14,6 +14,8 @@ namespace Xam.Forms.UpdatePrompt
 	{
         private static Button button;
         private static Label label;
+
+        private string downloadUrl;
         
         public UpdatePrompt()
         {
@@ -26,7 +28,7 @@ namespace Xam.Forms.UpdatePrompt
 
         public static readonly BindableProperty ButtonTextProperty =
             BindableProperty.Create("ButtonText", typeof(string), typeof(UpdatePrompt), null, propertyChanged: OnButtonTextChanged);
-        
+
         public string ButtonText
         {
             get { return (string)GetValue(ButtonTextProperty); }
@@ -65,7 +67,20 @@ namespace Xam.Forms.UpdatePrompt
             UpdatesCheckArgs args = new UpdatesCheckArgs();
             UpdatesCheckDelegate.Invoke(this, args);
 
-            IsVisible = await args.UpdateTask();
+            UpdatesCheckResponse response = await args.UpdateTask();
+            IsVisible = response.IsNewVersionAvailable;
+            downloadUrl = response.DownloadUrl;
+        }
+        
+        private void OnButtonClicked(object sender, EventArgs e)
+        {
+            Device.OpenUri(new Uri(downloadUrl));
+            IsVisible = false;
+        }
+
+        private void OnCancelClicked(object sender, EventArgs e)
+        {
+            IsVisible = false;
         }
     }
 }
