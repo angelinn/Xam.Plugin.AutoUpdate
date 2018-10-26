@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Xam.Forms.UpdatePrompt"
              x:Class="Xam.Forms.UpdatePrompt.MainPage">
 
-    <local:UpdatePrompt ButtonText="Download" UpdatesCheckDelegate="UpdatesCheck" />
+    <local:UpdatePrompt ButtonText="Download" UpdateText="A new version is available." UpdatesCheckDelegate="UpdatesCheck" />
 
 </ContentPage>
+    

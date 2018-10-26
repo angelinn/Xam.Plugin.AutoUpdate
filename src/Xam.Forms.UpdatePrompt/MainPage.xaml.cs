@@ -16,7 +16,7 @@ namespace Xam.Forms.UpdatePrompt
 
         private void UpdatesCheck(object sender, UpdatesCheckArgs e)
         {
-            e.UpdateTask = async () => { await Task.Delay(5000); return true; };
+            e.UpdateTask = async () => { await Task.Delay(1000); return true; };
         }
     }
 }

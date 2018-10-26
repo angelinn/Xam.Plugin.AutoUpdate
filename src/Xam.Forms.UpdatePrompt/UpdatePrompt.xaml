@@ -8,10 +8,9 @@
     <Grid BackgroundColor="Black" Opacity="0.5" />
     <Frame x:Name="content" VerticalOptions="Center" HorizontalOptions="Center" BackgroundColor="White">
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-            <Label Text="Update" HorizontalOptions="Center"  />
+            <Label x:Name="lbl" HorizontalOptions="Center"  />
             <Button x:Name="btn" HorizontalOptions="Center"  />
         </StackLayout>
     </Frame>
-
-
+    
 </Grid>

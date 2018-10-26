@@ -13,16 +13,17 @@ namespace Xam.Forms.UpdatePrompt
 	public partial class UpdatePrompt : Grid
 	{
         private static Button button;
-
-		public UpdatePrompt ()
-		{
-			InitializeComponent ();
+        private static Label label;
+        
+        public UpdatePrompt()
+        {
+            InitializeComponent();
             button = btn;
-		}
-        
-        
+            label = lbl;
+        }
 
         public event EventHandler<UpdatesCheckArgs> UpdatesCheckDelegate;
+
         public static readonly BindableProperty ButtonTextProperty =
             BindableProperty.Create("ButtonText", typeof(string), typeof(UpdatePrompt), null, propertyChanged: OnButtonTextChanged);
         
@@ -35,6 +36,20 @@ namespace Xam.Forms.UpdatePrompt
         private static void OnButtonTextChanged(BindableObject bindable, object oldValue, object newValue)
         {
             button.Text = newValue.ToString();
+        }
+
+        public static readonly BindableProperty UpdateTextProperty =
+    BindableProperty.Create("ButtonText", typeof(string), typeof(UpdatePrompt), null, propertyChanged: OnUpdateTextChanged);
+
+        public string UpdateText
+        {
+            get { return (string)GetValue(UpdateTextProperty); }
+            set { SetValue(UpdateTextProperty, value); }
+        }
+
+        private static void OnUpdateTextChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            label.Text = newValue.ToString();
         }
 
         protected override void OnSizeAllocated(double width, double height)
