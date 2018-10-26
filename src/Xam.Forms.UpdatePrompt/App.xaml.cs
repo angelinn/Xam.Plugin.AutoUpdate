@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -10,10 +11,21 @@ namespace Xam.Forms.UpdatePrompt
 		public App ()
 		{
 			InitializeComponent();
-
+            
 			MainPage = new MainPage();
+            UpdateManager updateManager = new UpdateManager("Update available",
+                "A new update is available. Please update!", "Update", "Cancel",
+            async () =>
+            {
+                await Task.Delay(3000);
+                return new UpdatesCheckResponse
+                {
+                    IsNewVersionAvailable = true,
+                    DownloadUrl = "http://github.com"
+                };
+            });
 		}
-
+        
 		protected override void OnStart ()
 		{
 			// Handle when your app starts
