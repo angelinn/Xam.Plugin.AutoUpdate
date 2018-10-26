@@ -12,7 +12,6 @@ namespace Xam.Forms.UpdatePrompt
 		public MainPage()
 		{
 			InitializeComponent();
-            
 		}
     }
 }
