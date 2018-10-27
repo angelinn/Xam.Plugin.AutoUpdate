@@ -10,8 +10,8 @@
     <TemplateGuid>{9ef11e43-1701-4396-8835-8392d57abb70}</TemplateGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Xam.Plugin.AutoUpdate.Android</RootNamespace>
-    <AssemblyName>Xam.Plugin.AutoUpdate.Android</AssemblyName>
+    <RootNamespace>Xam.Plugin.AutoUpdate.Droid</RootNamespace>
+    <AssemblyName>Xam.Plugin.AutoUpdate.Droid</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <AndroidResgenFile>Resources\Resource.Designer.cs</AndroidResgenFile>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>

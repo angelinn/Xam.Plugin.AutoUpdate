@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugin.AutoUpdate", "Xam.Plugin.AutoUpdate\Xam.Plugin.AutoUpdate.csproj", "{F35FDC32-078A-42BA-9B8A-0FB3AC3F39C6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugin.AutoUpdate.Android", "Xam.Plugin.AutoUpdate.Android\Xam.Plugin.AutoUpdate.Android.csproj", "{B4FFC9B1-919F-47DA-8029-813F52341383}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugin.AutoUpdate.Droid", "Xam.Plugin.AutoUpdate.Droid\Xam.Plugin.AutoUpdate.Droid.csproj", "{B4FFC9B1-919F-47DA-8029-813F52341383}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
