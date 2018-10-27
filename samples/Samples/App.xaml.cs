@@ -1,6 +1,6 @@
 using System;
 using System.Threading.Tasks;
-using Xam.Forms.CheckForUpdates;
+using Xam.Plugin.AutoUpdate;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,15 +14,18 @@ namespace Samples
 			InitializeComponent();
 
 			MainPage = new MainPage();
-            UpdateManager updateManager = new UpdateManager("Update available",
-                "A new version is available. Please update!", "Update", "Cancel",
-                async () =>
+            UpdateManager updateManager = new UpdateManager(
+                title: "Update available",
+                message: "A new version is available. Please update!",
+                confirm: "Update",
+                cancel: "Cancel",
+                checkForUpdatesFunction: async () =>
                 {
                     await Task.Delay(3000);
                     return new UpdatesCheckResponse
                     {
                         IsNewVersionAvailable = true,
-                        DownloadUrl = "http://github.com"
+                        DownloadUrl = "https://github.com/angelinn/TramlineFive.Xamarin/releases/download/2.8/com.TramlineFive.beta.v2.8.apk"
                     };
                 }
             );

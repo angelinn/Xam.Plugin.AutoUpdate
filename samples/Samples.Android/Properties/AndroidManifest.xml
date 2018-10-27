@@ -1,5 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.Samples">
-	<uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
-	<application android:label="Samples.Android"></application>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.Samples" android:installLocation="auto">
+  <uses-sdk android:minSdkVersion="19" android:targetSdkVersion="27" />
+  <application android:label="Samples.Android">
+    <provider android:name="android.support.v4.content.FileProvider" android:authorities="com.companyname.Samples.fileProvider" android:grantUriPermissions="true" android:exported="false">
+      <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths" />
+    </provider>
+  </application>
+
 </manifest>

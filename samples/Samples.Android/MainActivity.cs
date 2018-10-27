@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Xam.Plugin.AutoUpdate.Droid;
+using Android;
 
 namespace Samples.Droid
 {
@@ -19,7 +21,9 @@ namespace Samples.Droid
 
             base.OnCreate(bundle);
 
+            FileOpener.Init(this);
             global::Xamarin.Forms.Forms.Init(this, bundle);
+            
             LoadApplication(new App());
         }
     }
