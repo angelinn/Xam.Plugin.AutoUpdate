@@ -1,6 +1,6 @@
-# Xam.Plugin.AutoUpdate [In Development]
+# Xam.Plugins.AutoUpdate [In Development]
 
-## Auto update for your android/UWP
+## Auto update for your Android/UWP
 
 <div class="inline-block">
   <img src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_android.png" alt="android" width="220"/>
@@ -11,8 +11,11 @@
 
 
 ## What is it?
-* Downloads and installs a new version of your application
-* Uses native alert view
+* Developer provides a check for updates function
+* The plugin checks for updates every ```RunEvery``` period of time
+* When a new version is available and the user clicks the **confirm** button, the file from the provided url is downloaded and started
+
+## Works only with UWP and Android
 
 ## Installation
 Nuget package will be available soon.
@@ -20,7 +23,7 @@ Nuget package will be available soon.
 Install the package only on the Forms project.
 
 ## Android
-For android api > 23 a FileProvider configuration is required:
+For Android API > **23** a ```FileProvider``` configuration is required:
 * Add to AndroidManifest
 ```xml
   <application android:label="...">
@@ -30,13 +33,23 @@ For android api > 23 a FileProvider configuration is required:
   </application>
 ```
 
-* Create a new file - Resources/xml/file_paths.xml
+* Create a new file - ```Resources/xml/file_paths.xml```
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
   <files-path name="files" path="/" />
 </paths>
 ```
+
+* Add to ```MainActivity```
+
+```C#
+AutoUpdate.Init(this, authority);
+
+```
+
+**NOTE:** The authority value is the same as the **android:authorities** in the ```AndroidManifest``` file.
+
 
 ## Usage
 
