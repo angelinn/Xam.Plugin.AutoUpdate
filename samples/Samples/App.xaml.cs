@@ -13,7 +13,13 @@ namespace Samples
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+            MainPage = new MainPage();
+            string downloadUrl = String.Empty;
+            if (Device.RuntimePlatform == Device.Android)
+                downloadUrl = "https://github.com/angelinn/TramlineFive.Xamarin/releases/download/2.8/com.TramlineFive.beta.v2.8.apk";
+            else if (Device.RuntimePlatform == Device.UWP)
+                downloadUrl = "https://github.com/angelinn/TramlineFive.Xamarin/releases/download/2.8/TramlineFive.UWP_2.8.0.0_arm.appxbundle";
+
             UpdateManager updateManager = new UpdateManager(
                 title: "Update available",
                 message: "A new version is available. Please update!",
@@ -25,8 +31,7 @@ namespace Samples
                     return new UpdatesCheckResponse
                     {
                         IsNewVersionAvailable = true,
-                        DownloadUrl = "https://github.com/angelinn/TramlineFive.Xamarin/releases/download/2.8/TramlineFive.UWP_2.8.0.0_arm.appxbundle"
-                        //DownloadUrl = "https://github.com/angelinn/TramlineFive.Xamarin/releases/download/2.8/com.TramlineFive.beta.v2.8.apk"
+                        DownloadUrl = downloadUrl
                     };
                 }
             );
