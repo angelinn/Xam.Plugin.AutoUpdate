@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace Xam.Forms.CheckForUpdates
+namespace Xam.Plugin.CheckForUpdates
 {
     public class UpdateManager
     {
@@ -13,20 +13,28 @@ namespace Xam.Forms.CheckForUpdates
         private readonly string confirm;
         private readonly string cancel;
         private readonly Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction;
+        private readonly TimeSpan? runEvery;
 
         private bool didCheck;
         private readonly Page mainPage;
         
-        public UpdateManager(string title, string message, string confirm, string cancel, Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction)
+        public UpdateManager(string title, string message, string confirm, string cancel, Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction, TimeSpan? runEvery = null)
         {
             this.title = title;
             this.message = message;
             this.confirm = confirm;
             this.cancel = cancel;
             this.checkForUpdatesFunction = checkForUpdatesFunction;
+            this.runEvery = runEvery;
 
             mainPage = Application.Current.MainPage;
             mainPage.Appearing += OnMainPageAppearing;
+        }
+
+        public UpdateManager(UpdateManagerParameters parameters) 
+            : this (parameters.Title, parameters.Message, parameters.Confirm, parameters.Cancel, parameters.CheckForUpdatesFunction, parameters.RunEvery)
+        {
+
         }
 
         private async void OnMainPageAppearing(object sender, EventArgs e)
@@ -34,7 +42,18 @@ namespace Xam.Forms.CheckForUpdates
             if (!didCheck)
             {
                 didCheck = true;
-                await CheckForUpdatesAsync();
+
+                if (runEvery.HasValue)
+                {
+                    DateTime lastUpdateTime = (DateTime)Application.Current.Properties["UpdateManager.LastUpdateTime"];
+                    if (lastUpdateTime + runEvery.Value > DateTime.Now)
+                    {
+                        Application.Current.Properties["UpdateManager.LastUpdateTime"] = DateTime.Now;
+                        await CheckForUpdatesAsync();
+                    }
+                }
+                else
+                    await CheckForUpdatesAsync();
             }
         }
         
