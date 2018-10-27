@@ -26,7 +26,7 @@ namespace Xam.Plugin.AutoUpdate.Droid
         {
             mainActivity = activity;
         }
-        
+
         public void OpenFile(byte[] data, string name)
         {
             string directory = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
@@ -36,11 +36,17 @@ namespace Xam.Plugin.AutoUpdate.Droid
                 if (Path.GetExtension(file) == ".apk")
                     File.Delete(file);
             }
-            
+
             File.WriteAllBytes(path, data);
 
             Intent intent = new Intent(Intent.ActionView);
-            intent.SetDataAndType(FileProvider.GetUriForFile(mainActivity, "com.companyname.Samples.fileProvider", new Java.IO.File(path)), "application/vnd.android.package-archive");
+            Android.Net.Uri fileUri = null;
+            if ((int)Build.VERSION.SdkInt < 23)
+                fileUri = Android.Net.Uri.FromFile(new Java.IO.File(path));
+            else
+                fileUri = FileProvider.GetUriForFile(mainActivity, "com.companyname.Samples.fileProvider", new Java.IO.File(path));
+
+            intent.SetDataAndType(fileUri, "application/vnd.android.package-archive");
             intent.SetFlags(ActivityFlags.GrantReadUriPermission);
             mainActivity.StartActivity(intent);
         }
