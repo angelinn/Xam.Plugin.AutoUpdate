@@ -27,6 +27,9 @@ UpdateManager updateManager = new UpdateManager(
     message: "A new version is available. Please update!",
     confirm: "Update",
     cancel: "Cancel",
+    
+    // choose how often to check when opening the app to avoid spamming the user every time
+    runEvery: TimeSpan.FromDays(1), 
     checkForUpdatesFunction: async () =>
     {
         // check for updates from external url ...
