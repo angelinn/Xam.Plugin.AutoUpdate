@@ -1,4 +1,5 @@
-# Xam.Plugin.AutoUpdate
+# Xam.Plugin.AutoUpdate [In Development]
+
 ## Auto update for your android/UWP
 
 <div class="inline-block">
