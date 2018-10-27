@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugin.AutoUpdate", "Xam.Plugin.AutoUpdate\Xam.Plugin.AutoUpdate.csproj", "{F35FDC32-078A-42BA-9B8A-0FB3AC3F39C6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xam.Plugin.AutoUpdate.Android", "Xam.Plugin.AutoUpdate.Android\Xam.Plugin.AutoUpdate.Android.csproj", "{B4FFC9B1-919F-47DA-8029-813F52341383}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F35FDC32-078A-42BA-9B8A-0FB3AC3F39C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F35FDC32-078A-42BA-9B8A-0FB3AC3F39C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F35FDC32-078A-42BA-9B8A-0FB3AC3F39C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F35FDC32-078A-42BA-9B8A-0FB3AC3F39C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4FFC9B1-919F-47DA-8029-813F52341383}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4FFC9B1-919F-47DA-8029-813F52341383}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4FFC9B1-919F-47DA-8029-813F52341383}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4FFC9B1-919F-47DA-8029-813F52341383}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2B2498A1-4978-4CE0-94D1-6467AA34A5BD}
+	EndGlobalSection
+EndGlobal

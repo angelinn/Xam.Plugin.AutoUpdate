@@ -7,7 +7,7 @@
     <owners>Angelin Nedelchev</owners>
     <licenseUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/</projectUrl>
-    <iconUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/blob/master/src/nuget_icon.png?raw=true</iconUrl>
+    <iconUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/blob/master/images/nuget_icon.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>A simple plugin that uses the native Xamarin Forms alert to provide an easy update checking service.</description>
     <releaseNotes>Initial version.</releaseNotes>
