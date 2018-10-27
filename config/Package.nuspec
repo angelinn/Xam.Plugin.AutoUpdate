@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>Xam.Plugin.CheckForUpdates</id>
+    <id>Xam.Plugin.AutoUpdate</id>
     <version>1.0.0</version>
     <authors>Angelin Nedelchev</authors>
     <owners>Angelin Nedelchev</owners>
@@ -21,6 +21,6 @@
   </metadata>
 
   <files>
-    <file src="Xam.Plugin.CheckForUpdates\bin\Debug\netstandard1.4\Xam.Plugin.CheckForUpdates.dll" target="lib\netstandard1.4\Xam.Plugin.CheckForUpdates.dll" />
+    <file src="bin\**" target="lib\{framework name}[{version}]" />
   </files>
 </package>
