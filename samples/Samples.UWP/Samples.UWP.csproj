@@ -147,6 +147,10 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Xam.Plugin.AutoUpdate.UWP\Xam.Plugin.AutoUpdate.UWP.csproj">
+      <Project>{f087ea68-59b4-4014-b725-a51382f025ae}</Project>
+      <Name>Xam.Plugin.AutoUpdate.UWP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Samples\Samples.csproj">
       <Project>{FC636867-4B1E-479D-867D-67A5017E9C3B}</Project>
       <Name>Samples</Name>

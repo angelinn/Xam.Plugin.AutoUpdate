@@ -25,7 +25,8 @@ namespace Samples
                     return new UpdatesCheckResponse
                     {
                         IsNewVersionAvailable = true,
-                        DownloadUrl = "https://github.com/angelinn/TramlineFive.Xamarin/releases/download/2.8/com.TramlineFive.beta.v2.8.apk"
+                        DownloadUrl = "https://github.com/angelinn/TramlineFive.Xamarin/releases/download/2.8/TramlineFive.UWP_2.8.0.0_arm.appxbundle"
+                        //DownloadUrl = "https://github.com/angelinn/TramlineFive.Xamarin/releases/download/2.8/com.TramlineFive.beta.v2.8.apk"
                     };
                 }
             );
