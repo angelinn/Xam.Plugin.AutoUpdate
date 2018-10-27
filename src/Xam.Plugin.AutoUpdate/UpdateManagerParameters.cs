@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Xam.Plugin.CheckForUpdates
+namespace Xam.Plugin.AutoUpdate
 {
     public class UpdateManagerParameters
     {

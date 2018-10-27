@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xam.Plugin.AutoUpdate.Services;
 using Xamarin.Forms;
 
-namespace Xam.Plugin.CheckForUpdates
+namespace Xam.Plugin.AutoUpdate
 {
     public class UpdateManager
     {
@@ -63,7 +66,13 @@ namespace Xam.Plugin.CheckForUpdates
             if (response.IsNewVersionAvailable)
             {
                 if (await mainPage.DisplayAlert(title, message, confirm, cancel))
-                    Device.OpenUri(new Uri(response.DownloadUrl));
+                {
+                    HttpResponseMessage httpResponse = await new HttpClient().GetAsync(response.DownloadUrl);
+                    byte[] data = await httpResponse.Content.ReadAsByteArrayAsync();
+
+                    string fileName = response.DownloadUrl.Substring(response.DownloadUrl.LastIndexOf("/") + 1);
+                    DependencyService.Get<IFileOpener>().OpenFile(data, fileName);
+                }
             }
         }
     }
