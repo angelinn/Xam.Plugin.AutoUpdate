@@ -5,22 +5,31 @@
     <version>1.0.0</version>
     <authors>Angelin Nedelchev</authors>
     <owners>Angelin Nedelchev</owners>
-    <licenseUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/blob/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/</projectUrl>
-    <iconUrl>https://github.com/angelinn/Xam.Forms.UpdatePrompt/blob/master/images/nuget_icon.png?raw=true</iconUrl>
+    <licenseUrl>https://github.com/angelinn/Xam.Plugin.AutoUpdate/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/angelinn/Xam.Plugin.AutoUpdate/</projectUrl>
+    <iconUrl>https://github.com/angelinn/Xam.Plugin.AutoUpdate/blob/master/images/nuget_icon.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>A simple plugin that uses the native Xamarin Forms alert to provide an easy update checking service.</description>
+    <description>A simple plugin that provides easy update checking and auto update from within the application.</description>
     <releaseNotes>Initial version.</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>check for updates prompt alert xamarin xam forms android windows uwp ios iphone</tags>
     <dependencies>
       <group targetFramework="netstandard1.4">
         <dependency id="Xamarin.Forms" version="2.5.1.527436" />
+      </group>        
+      <group targetFramework="netstandard2.0">
+        <dependency id="Xamarin.Forms" version="2.5.1.527436" />
+      </group>
+      <group targetFramework="MonoAndroid8.1">
+        <dependency id="Xamarin.Forms" version="2.5.1.527436" />
+      </group>       
+      <group targetFramework="UAP10.0">
+        <dependency id="Xamarin.Forms" version="2.5.1.527436" />
       </group>
     </dependencies>
   </metadata>
 
   <files>
-    <file src="bin\**" target="lib\{framework name}[{version}]" />
+    <file src="bin\**" target="lib" />
   </files>
 </package>
