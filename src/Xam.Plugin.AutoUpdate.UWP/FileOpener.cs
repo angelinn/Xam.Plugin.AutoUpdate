@@ -14,14 +14,14 @@ namespace Xam.Plugin.AutoUpdate.UWP
     {
         public async void OpenFile(byte[] data, string name)
         {
-            string directory = ApplicationData.Current.LocalFolder.Path;
-            foreach (string file in Directory.GetFiles(directory))
+            IStorageFolder directory = ApplicationData.Current.LocalFolder;
+            foreach (IStorageFile file in await directory.GetFilesAsync())
             {
-                if (Path.GetExtension(file) == "*.appxbundle")
-                    File.Delete(file);
+                if (file.FileType == ".appxbundle")
+                    await file.DeleteAsync();
             }
 
-            StorageFile sampleFile = await ApplicationData.Current.LocalFolder.CreateFileAsync(name);
+            StorageFile sampleFile = await directory.CreateFileAsync(name);
             await FileIO.WriteBytesAsync(sampleFile, data);
             await Windows.System.Launcher.LaunchFileAsync(sampleFile);
         }
