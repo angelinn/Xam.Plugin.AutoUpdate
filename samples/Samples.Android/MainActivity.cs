@@ -21,7 +21,7 @@ namespace Samples.Droid
 
             base.OnCreate(bundle);
 
-            FileOpener.Init(this);
+            AutoUpdate.Init(this, "com.companyname.Samples.fileProvider");
             global::Xamarin.Forms.Forms.Init(this, bundle);
             
             LoadApplication(new App());

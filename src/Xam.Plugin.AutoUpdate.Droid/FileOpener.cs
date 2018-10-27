@@ -20,13 +20,6 @@ namespace Xam.Plugin.AutoUpdate.Droid
 {
     public class FileOpener : IFileOpener
     {
-        private static Context mainActivity;
-
-        public static void Init(Context activity)
-        {
-            mainActivity = activity;
-        }
-
         public void OpenFile(byte[] data, string name)
         {
             string directory = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
@@ -44,11 +37,11 @@ namespace Xam.Plugin.AutoUpdate.Droid
             if ((int)Build.VERSION.SdkInt < 23)
                 fileUri = Android.Net.Uri.FromFile(new Java.IO.File(path));
             else
-                fileUri = FileProvider.GetUriForFile(mainActivity, "com.companyname.Samples.fileProvider", new Java.IO.File(path));
+                fileUri = FileProvider.GetUriForFile(AutoUpdate.Context, AutoUpdate.Authority, new Java.IO.File(path));
 
             intent.SetDataAndType(fileUri, "application/vnd.android.package-archive");
             intent.SetFlags(ActivityFlags.GrantReadUriPermission);
-            mainActivity.StartActivity(intent);
+            AutoUpdate.Context.StartActivity(intent);
         }
     }
 }
