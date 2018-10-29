@@ -9,6 +9,9 @@
   <img src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_uwp.png" alt="uwp" width="335"/>
 </div>
 
+TO DO: 
+* Add docs how to poll from store
+* Add option to open store instead of downloading app package
 
 ## What is it?
 * Developer provides a check for updates function
