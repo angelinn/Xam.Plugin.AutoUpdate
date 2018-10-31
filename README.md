@@ -2,11 +2,9 @@
 
 ## Auto update for your Android/UWP
 
-<div class="inline-block">
-  <img src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_android.png" alt="android" width="220"/>
-</div>
-<div class="inline-block" style="margin-left: 100px">
-  <img src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_uwp.png" alt="uwp" width="335"/>
+<div class="inline-block" >
+  <img style="float: left;" src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_android.png" alt="android" width="220"/>
+  <img style="float: left;" src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_uwp.png" alt="uwp" width="335"/>
 </div>
 
 TO DO: 
