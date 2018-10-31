@@ -115,7 +115,7 @@ namespace Xam.Plugin.AutoUpdate
             UpdatesCheckResponse response = await checkForUpdatesFunction();
             if (response.IsNewVersionAvailable && await mainPage.DisplayAlert(title, message, confirm, cancel))
             {
-                // open app store url
+                DependencyService.Get<IStoreOpener>().OpenStore();
             }
         }
 
