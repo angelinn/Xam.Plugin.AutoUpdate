@@ -24,6 +24,23 @@ namespace Xam.Plugin.AutoUpdate
 
         private readonly UpdateManagerMode mode;
 
+#if DEBUG
+        public static string AppIDDummy
+        {
+            get
+            {
+                if (Device.RuntimePlatform == Device.Android)
+                    return "com.spotify.music";
+                if (Device.RuntimePlatform == Device.UWP)
+                    return "spotify-music";
+                if (Device.RuntimePlatform == Device.iOS)
+                    return "spotify-music";
+
+                return String.Empty;
+            }
+        }
+#endif
+
         private UpdateManager(string title, string message, string confirm, string cancel, Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction, TimeSpan? runEvery = null)
         {
             this.title = title;

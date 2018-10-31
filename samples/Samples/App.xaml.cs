@@ -27,10 +27,11 @@ namespace Samples
                 Confirm = "Update",
                 Cancel = "Cancel",
                 // choose how often to check when opening the app to avoid spamming the user every time
-                RunEvery = TimeSpan.FromDays(1),
+                // RunEvery = TimeSpan.FromDays(1),
                 CheckForUpdatesFunction = async () =>
                 {
                     // check for updates from external url ...
+                    await Task.Delay(3000);
                     return new UpdatesCheckResponse
                     {
                         IsNewVersionAvailable = true,
