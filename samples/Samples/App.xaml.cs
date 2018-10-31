@@ -20,24 +20,29 @@ namespace Samples
             else if (Device.RuntimePlatform == Device.UWP)
                 downloadUrl = "https://github.com/angelinn/TramlineFive.Xamarin/releases/download/2.8/TramlineFive.UWP_2.8.0.0_arm.appxbundle";
 
-            UpdateManager updateManager = new UpdateManager(
-                title: "Update available",
-                message: "A new version is available. Please update!",
-                confirm: "Update",
-                cancel: "Cancel",
-                checkForUpdatesFunction: async () =>
+            UpdateManagerParameters parameters = new UpdateManagerParameters
+            {
+                Title = "Update available",
+                Message = "A new version is available. Please update!",
+                Confirm = "Update",
+                Cancel = "Cancel",
+                // choose how often to check when opening the app to avoid spamming the user every time
+                RunEvery = TimeSpan.FromDays(1),
+                CheckForUpdatesFunction = async () =>
                 {
-                    await Task.Delay(3000);
+                    // check for updates from external url ...
                     return new UpdatesCheckResponse
                     {
                         IsNewVersionAvailable = true,
                         DownloadUrl = downloadUrl
                     };
                 }
-            );
+            };
+
+            UpdateManager updateManager = new UpdateManager(parameters, UpdateManagerMode.CheckAndAutoInstall);
         }
 
-		protected override void OnStart ()
+        protected override void OnStart ()
 		{
 			// Handle when your app starts
 		}
