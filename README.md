@@ -14,11 +14,14 @@ TO DO:
 * Add option to open store instead of downloading app package
 
 ## What is it?
-* Developer provides a check for updates function
+* Check for update and auto install sideloaded Android or UWP application
+* Check for update and redirect to play store
+* **The auto install part works only with UWP and Android**
+
+## How does it work?
+* Developer provides a check for updates function, returning if there is an update available and the url to the file, if provided
 * The plugin checks for updates every ```RunEvery``` period of time
 * When a new version is available and the user clicks the **confirm** button, the file from the provided url is downloaded and started
-
-## Works only with UWP and Android
 
 ## Installation
 Nuget package will be available soon.
@@ -59,15 +62,15 @@ AutoUpdate.Init(this, authority);
 The ```UpdateManager``` class.
 
 ```C#
-UpdateManager updateManager = new UpdateManager(
-    title: "Update available",
-    message: "A new version is available. Please update!",
-    confirm: "Update",
-    cancel: "Cancel",
-    
+UpdateManagerParameters parameters = new UpdateManagerParameters
+{
+    Title = "Update available",
+    Message = "A new version is available. Please update!",
+    Confirm = "Update",
+    Cancel = "Cancel",
     // choose how often to check when opening the app to avoid spamming the user every time
-    runEvery: TimeSpan.FromDays(1), 
-    checkForUpdatesFunction: async () =>
+    RunEvery = TimeSpan.FromDays(1),
+    CheckForUpdatesFunction = async () =>
     {
         // check for updates from external url ...
         return new UpdatesCheckResponse
@@ -76,6 +79,15 @@ UpdateManager updateManager = new UpdateManager(
             DownloadUrl = "http://site.com/file.apk"
         };
     }
-);
+}
+```
 
+Use ```UpdateManagerMode.CheckAndAutoInstall``` to download and install the application
+```C#
+  UpdateManager updateManager = new UpdateManager(parameters, UpdateManagerMode.CheckAndAutoInstall);
+```
+
+or ```UpdateManagerMode.CheckAndOpenAppStore``` to open the corresponding app store
+```C#
+  UpdateManager updateManager = new UpdateManager(parameters, UpdateManagerMode.CheckAndOpenAppStore);
 ```
