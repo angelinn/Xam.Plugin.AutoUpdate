@@ -34,8 +34,8 @@ namespace Xam.Plugin.AutoUpdate
                 if (Device.RuntimePlatform == Device.UWP)
                     return "9ncbcszsjrsb";
                 if (Device.RuntimePlatform == Device.iOS)
-                    return "spotify-music";
-
+                    return "id324684580";
+                
                 return String.Empty;
             }
         }
