@@ -32,7 +32,7 @@ namespace Xam.Plugin.AutoUpdate
                 if (Device.RuntimePlatform == Device.Android)
                     return "com.spotify.music";
                 if (Device.RuntimePlatform == Device.UWP)
-                    return "spotify-music";
+                    return "9ncbcszsjrsb";
                 if (Device.RuntimePlatform == Device.iOS)
                     return "spotify-music";
 
