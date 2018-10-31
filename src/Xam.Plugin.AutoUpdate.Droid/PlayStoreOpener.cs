@@ -10,15 +10,24 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Xam.Plugin.AutoUpdate.Droid;
 using Xam.Plugin.AutoUpdate.Services;
+using Xamarin.Forms;
 
+[assembly: Dependency(typeof(PlayStoreOpener))]
 namespace Xam.Plugin.AutoUpdate.Droid
 {
     public class PlayStoreOpener : IStoreOpener
     {
         public void OpenStore()
         {
-            string appID = AutoUpdate.Context.PackageName;
+            string appID =
+#if DEBUG
+                UpdateManager.AppIDDummy;
+#else
+                AutoUpdate.Context.PackageName;
+#endif
+
             Intent storeIntent = new Intent(Intent.ActionView, Android.Net.Uri.Parse($"market://details?id={appID}"));
             bool foundApp = false;
 
