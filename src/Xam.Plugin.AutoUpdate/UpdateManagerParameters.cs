@@ -12,6 +12,6 @@ namespace Xam.Plugin.AutoUpdate
         public string Confirm { get; set; }
         public string Cancel { get; set; }
         public Func<Task<UpdatesCheckResponse>> CheckForUpdatesFunction { get; set; }
-        public TimeSpan RunEvery { get; set; }
+        public TimeSpan? RunEvery { get; set; }
     }
 }
