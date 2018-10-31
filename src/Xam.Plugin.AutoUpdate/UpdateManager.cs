@@ -22,7 +22,9 @@ namespace Xam.Plugin.AutoUpdate
         private bool didCheck;
         private readonly Page mainPage;
 
-        public UpdateManager(string title, string message, string confirm, string cancel, Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction, TimeSpan? runEvery = null)
+        private readonly UpdateManagerMode mode;
+
+        private UpdateManager(string title, string message, string confirm, string cancel, Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction, TimeSpan? runEvery = null)
         {
             this.title = title;
             this.message = message;
@@ -34,11 +36,14 @@ namespace Xam.Plugin.AutoUpdate
             mainPage = Application.Current.MainPage;
             mainPage.Appearing += OnMainPageAppearing;
         }
-
-        public UpdateManager(UpdateManagerParameters parameters)
+        
+        public UpdateManager(UpdateManagerParameters parameters, UpdateManagerMode mode)
             : this(parameters.Title, parameters.Message, parameters.Confirm, parameters.Cancel, parameters.CheckForUpdatesFunction, parameters.RunEvery)
         {
+            if (mode == UpdateManagerMode.MissingNo)
+                throw new AutoUpdateException("You are not supposed to select this mode.");
 
+            this.mode = mode;
         }
 
         private async void OnMainPageAppearing(object sender, EventArgs e)
@@ -60,26 +65,41 @@ namespace Xam.Plugin.AutoUpdate
                     await CheckForUpdatesAsync();
             }
         }
-        
-        private async Task CheckForUpdatesAsync(bool autoInstall = true)
+
+        private async Task CheckForUpdatesAsync()
+        {
+            if (mode == UpdateManagerMode.CheckAndAutoInstall)
+                await CheckAndUpdateAsync();
+            else if (mode == UpdateManagerMode.CheckAndOpenAppStore)
+                await CheckAndOpenAppStoreAsync();
+        }
+
+        private async Task CheckAndUpdateAsync()
         {
             UpdatesCheckResponse response = await checkForUpdatesFunction();
             if (response.IsNewVersionAvailable && await mainPage.DisplayAlert(title, message, confirm, cancel))
             {
-                if (autoInstall)
+                if (Device.RuntimePlatform == Device.UWP || Device.RuntimePlatform == Device.Android)
                 {
-                    if (Device.RuntimePlatform == Device.UWP || Device.RuntimePlatform == Device.Android)
-                    {
-                        HttpResponseMessage httpResponse = await new HttpClient().GetAsync(response.DownloadUrl);
-                        byte[] data = await httpResponse.Content.ReadAsByteArrayAsync();
+                    HttpResponseMessage httpResponse = await new HttpClient().GetAsync(response.DownloadUrl);
+                    byte[] data = await httpResponse.Content.ReadAsByteArrayAsync();
 
-                        string fileName = response.DownloadUrl.Substring(response.DownloadUrl.LastIndexOf("/") + 1);
-                        DependencyService.Get<IFileOpener>().OpenFile(data, fileName);
-                    }
-                    else
-                        throw new AutoUpdateException("Only Android and UWP are supported for automatic installation.");
+                    string fileName = response.DownloadUrl.Substring(response.DownloadUrl.LastIndexOf("/") + 1);
+                    DependencyService.Get<IFileOpener>().OpenFile(data, fileName);
                 }
+                else
+                    throw new AutoUpdateException("Only Android and UWP are supported for automatic installation.");
             }
         }
+
+        private async Task CheckAndOpenAppStoreAsync()
+        {
+            UpdatesCheckResponse response = await checkForUpdatesFunction();
+            if (response.IsNewVersionAvailable && await mainPage.DisplayAlert(title, message, confirm, cancel))
+            {
+                // open app store url
+            }
+        }
+
     }
 }
