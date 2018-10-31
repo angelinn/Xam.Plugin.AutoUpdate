@@ -53,7 +53,7 @@ namespace Xam.Plugin.AutoUpdate
             mainPage = Application.Current.MainPage;
             mainPage.Appearing += OnMainPageAppearing;
         }
-        
+
         public UpdateManager(UpdateManagerParameters parameters, UpdateManagerMode mode)
             : this(parameters.Title, parameters.Message, parameters.Confirm, parameters.Cancel, parameters.CheckForUpdatesFunction, parameters.RunEvery)
         {
@@ -69,16 +69,15 @@ namespace Xam.Plugin.AutoUpdate
             {
                 didCheck = true;
 
-                if (runEvery.HasValue)
+                bool run = true;
+                if (runEvery.HasValue && Application.Current.Properties.TryGetValue("UpdateManager.LastUpdateTime", out object lastUpdate))
                 {
-                    DateTime lastUpdateTime = (DateTime)Application.Current.Properties["UpdateManager.LastUpdateTime"];
-                    if (lastUpdateTime + runEvery.Value > DateTime.Now)
-                    {
-                        Application.Current.Properties["UpdateManager.LastUpdateTime"] = DateTime.Now;
-                        await CheckForUpdatesAsync();
-                    }
+                    DateTime lastUpdateTime = (DateTime)lastUpdate;
+                    if (lastUpdateTime + runEvery.Value < DateTime.Now)
+                        run = false;
                 }
-                else
+
+                if (run)
                     await CheckForUpdatesAsync();
             }
         }
@@ -89,6 +88,8 @@ namespace Xam.Plugin.AutoUpdate
                 await CheckAndUpdateAsync();
             else if (mode == UpdateManagerMode.CheckAndOpenAppStore)
                 await CheckAndOpenAppStoreAsync();
+
+            Application.Current.Properties["UpdateManager.LastUpdateTime"] = DateTime.Now;
         }
 
         private async Task CheckAndUpdateAsync()
