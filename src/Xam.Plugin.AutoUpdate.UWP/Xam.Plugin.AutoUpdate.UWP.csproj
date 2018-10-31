@@ -107,6 +107,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="FileOpener.cs" />
+    <Compile Include="MicrosoftStoreOpener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Xam.Plugin.AutoUpdate.UWP.rd.xml" />
   </ItemGroup>
