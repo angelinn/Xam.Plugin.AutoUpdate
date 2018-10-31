@@ -34,7 +34,7 @@ namespace Xam.Plugin.AutoUpdate.Droid
             IList<ResolveInfo> otherApps = AutoUpdate.Context.PackageManager.QueryIntentActivities(storeIntent, PackageInfoFlags.Activities);
             foreach (ResolveInfo info in otherApps)
             {
-                if (info.ActivityInfo.ApplicationInfo.PackageName == "com.android.venging")
+                if (info.ActivityInfo.ApplicationInfo.PackageName == "com.android.vending")
                 {
                     ActivityInfo storeActivityInfo = info.ActivityInfo;
                     ComponentName componentName = new ComponentName(storeActivityInfo.ApplicationInfo.PackageName, storeActivityInfo.Name);
