@@ -4,6 +4,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xam.Plugin.AutoUpdate.Exceptions;
 using Xam.Plugin.AutoUpdate.Services;
 using Xamarin.Forms;
 
@@ -27,8 +28,8 @@ namespace Xam.Plugin.AutoUpdate
             this.message = message;
             this.confirm = confirm;
             this.cancel = cancel;
-            this.checkForUpdatesFunction = checkForUpdatesFunction;
             this.runEvery = runEvery;
+            this.checkForUpdatesFunction = checkForUpdatesFunction ?? throw new AutoUpdateException("Check for updates function not provided. You must pass it in the constructor.");
 
             mainPage = Application.Current.MainPage;
             mainPage.Appearing += OnMainPageAppearing;
