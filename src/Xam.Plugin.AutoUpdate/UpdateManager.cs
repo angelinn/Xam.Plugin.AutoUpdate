@@ -21,7 +21,7 @@ namespace Xam.Plugin.AutoUpdate
 
         private bool didCheck;
         private readonly Page mainPage;
-        
+
         public UpdateManager(string title, string message, string confirm, string cancel, Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction, TimeSpan? runEvery = null)
         {
             this.title = title;
@@ -35,8 +35,8 @@ namespace Xam.Plugin.AutoUpdate
             mainPage.Appearing += OnMainPageAppearing;
         }
 
-        public UpdateManager(UpdateManagerParameters parameters) 
-            : this (parameters.Title, parameters.Message, parameters.Confirm, parameters.Cancel, parameters.CheckForUpdatesFunction, parameters.RunEvery)
+        public UpdateManager(UpdateManagerParameters parameters)
+            : this(parameters.Title, parameters.Message, parameters.Confirm, parameters.Cancel, parameters.CheckForUpdatesFunction, parameters.RunEvery)
         {
 
         }
@@ -61,18 +61,23 @@ namespace Xam.Plugin.AutoUpdate
             }
         }
         
-        private async Task CheckForUpdatesAsync()
+        private async Task CheckForUpdatesAsync(bool autoInstall = true)
         {
             UpdatesCheckResponse response = await checkForUpdatesFunction();
-            if (response.IsNewVersionAvailable)
+            if (response.IsNewVersionAvailable && await mainPage.DisplayAlert(title, message, confirm, cancel))
             {
-                if (await mainPage.DisplayAlert(title, message, confirm, cancel))
+                if (autoInstall)
                 {
-                    HttpResponseMessage httpResponse = await new HttpClient().GetAsync(response.DownloadUrl);
-                    byte[] data = await httpResponse.Content.ReadAsByteArrayAsync();
+                    if (Device.RuntimePlatform == Device.UWP || Device.RuntimePlatform == Device.Android)
+                    {
+                        HttpResponseMessage httpResponse = await new HttpClient().GetAsync(response.DownloadUrl);
+                        byte[] data = await httpResponse.Content.ReadAsByteArrayAsync();
 
-                    string fileName = response.DownloadUrl.Substring(response.DownloadUrl.LastIndexOf("/") + 1);
-                    DependencyService.Get<IFileOpener>().OpenFile(data, fileName);
+                        string fileName = response.DownloadUrl.Substring(response.DownloadUrl.LastIndexOf("/") + 1);
+                        DependencyService.Get<IFileOpener>().OpenFile(data, fileName);
+                    }
+                    else
+                        throw new AutoUpdateException("Only Android and UWP are supported for automatic installation.");
                 }
             }
         }
