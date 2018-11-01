@@ -54,7 +54,7 @@ AutoUpdate.Init(this, authority);
 ## Usage
 
 * Create an ```UpdateManagerParameters``` option.
-* Create an ```UpdateManager``` instance somewhere in your forms project. (e.g in **App.xaml.cs**)
+* Use ```UpdateManager.Initialize(parameters, mode)``` somewhere in your forms project. (e.g in **App.xaml.cs**)
 
 ```C#
 UpdateManagerParameters parameters = new UpdateManagerParameters
@@ -75,12 +75,12 @@ UpdateManagerParameters parameters = new UpdateManagerParameters
 
 Use ```UpdateMode.AutoInstall``` to download and install the application
 ```C#
-  UpdateManager updateManager = new UpdateManager(parameters, UpdateMode.AutoInstall);
+UpdateManager.Initialize(parameters, UpdateMode.AutoInstall);
 ```
 
 or ```UpdateMode.OpenAppStore``` to open the corresponding app store
 ```C#
-  UpdateManager updateManager = new UpdateManager(parameters, UpdateMode.OpenAppStore);
+UpdateManager.Initialize(parameters, UpdateMode.OpenAppStore);
 ```
 
 ## Auto install
