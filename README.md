@@ -53,7 +53,8 @@ AutoUpdate.Init(this, authority);
 
 ## Usage
 
-The ```UpdateManager``` class.
+* Create an ```UpdateManagerParameters``` option.
+* Create an ```UpdateManager``` instance somewhere in your forms project. (e.g in **App.xaml.cs**)
 
 ```C#
 UpdateManagerParameters parameters = new UpdateManagerParameters
