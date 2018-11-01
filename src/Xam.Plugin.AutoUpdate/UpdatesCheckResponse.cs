@@ -8,5 +8,11 @@ namespace Xam.Plugin.AutoUpdate
     {
         public string DownloadUrl { get; set; }
         public bool IsNewVersionAvailable { get; set; }
+
+        public UpdatesCheckResponse(bool isNewVersionAvailable, string downloadUrl = null)
+        {
+            IsNewVersionAvailable = isNewVersionAvailable;
+            DownloadUrl = downloadUrl;
+        }
     }
 }
