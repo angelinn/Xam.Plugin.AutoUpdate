@@ -1,4 +1,4 @@
-# Xam.Plugins.AutoUpdate [In Development]
+# Xam.Plugin.AutoUpdate [In Development]
 
 ## Auto update for your Android/UWP
 
@@ -6,10 +6,6 @@
   <img style="float: left;" src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_android.png" alt="android" width="220"/>
   <img style="float: left;" src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_uwp.png" alt="uwp" width="335"/>
 </div>
-
-TO DO: 
-* Add docs how to poll from store
-* Add option to open store instead of downloading app package
 
 ## What is it?
 * Check for update and auto install sideloaded Android or UWP application
@@ -24,7 +20,7 @@ TO DO:
 ## Installation
 Nuget package will be available soon.
 
-Install the package only on the Forms project.
+Install the package on the mobile projects in your solution (.netstandard, Android, UWP, iOS).
 
 ## Android
 For Android API > **23** a ```FileProvider``` configuration is required:
@@ -71,21 +67,27 @@ UpdateManagerParameters parameters = new UpdateManagerParameters
     CheckForUpdatesFunction = async () =>
     {
         // check for updates from external url ...
-        return new UpdatesCheckResponse
-        {
-            IsNewVersionAvailable = true,
-            DownloadUrl = "http://site.com/file.apk"
-        };
+        return new UpdatesCheckResponse(true, downloadUrl);
     }
 }
 ```
 
-Use ```UpdateManagerMode.CheckAndAutoInstall``` to download and install the application
+Use ```UpdateMode.AutoInstall``` to download and install the application
 ```C#
-  UpdateManager updateManager = new UpdateManager(parameters, UpdateManagerMode.CheckAndAutoInstall);
+  UpdateManager updateManager = new UpdateManager(parameters, UpdateMode.AutoInstall);
 ```
 
-or ```UpdateManagerMode.CheckAndOpenAppStore``` to open the corresponding app store
+or ```UpdateMode.OpenAppStore``` to open the corresponding app store
 ```C#
-  UpdateManager updateManager = new UpdateManager(parameters, UpdateManagerMode.CheckAndOpenAppStore);
+  UpdateManager updateManager = new UpdateManager(parameters, UpdateMode.OpenAppStore);
 ```
+
+## Auto install
+Using the auto install mode, the plugin will download the file provided in the **DownloadUrl** parameter and launch it as **apk** or **appxbundle**, depending on the platform.
+
+**Note:** As stated earlier, this option does not work with **iOS**, due to the restrictions of the operating system.
+
+## Open app store
+Using the open app store mode, the plugin will open the specified platform's **app store**, if an update is available.
+
+**Note:** Additional logic is used for android to determine that only the **Google Play store** can open the ```market://``` url and no other app that has registered for it.
