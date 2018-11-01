@@ -41,6 +41,15 @@ namespace Xam.Plugin.AutoUpdate
         }
 #endif
 
+        private static UpdateManager instance;
+        public static void Initialize(UpdateManagerParameters parameters, UpdateMode mode)
+        {
+            if (instance != null)
+                throw new AutoUpdateException("UpdateManager is already initialized.");
+
+            instance = new UpdateManager(parameters, mode);
+        }
+
         private UpdateManager(string title, string message, string confirm, string cancel, Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction, TimeSpan? runEvery = null)
         {
             this.title = title;
@@ -54,7 +63,7 @@ namespace Xam.Plugin.AutoUpdate
             mainPage.Appearing += OnMainPageAppearing;
         }
 
-        public UpdateManager(UpdateManagerParameters parameters, UpdateMode mode)
+        private UpdateManager(UpdateManagerParameters parameters, UpdateMode mode)
             : this(parameters.Title, parameters.Message, parameters.Confirm, parameters.Cancel, parameters.CheckForUpdatesFunction, parameters.RunEvery)
         {
             if (mode == UpdateMode.MissingNo)

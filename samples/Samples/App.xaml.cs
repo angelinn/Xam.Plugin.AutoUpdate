@@ -36,7 +36,7 @@ namespace Samples
                 }
             };
 
-            UpdateManager updateManager = new UpdateManager(parameters, UpdateMode.AutoInstall);
+            UpdateManager.Initialize(parameters, UpdateMode.AutoInstall);
         }
 
         protected override void OnStart ()
