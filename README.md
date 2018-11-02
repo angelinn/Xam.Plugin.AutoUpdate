@@ -4,7 +4,7 @@
 
 <div class="inline-block" >
   <img style="float: left;" src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_android.png" alt="android" width="220"/>
-  <img style="float: left;" src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_uwp.png" alt="uwp" width="335"/>
+  <img style="float: left;" src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_uwp.jpg" alt="uwp" width="220"/>
 </div>
 
 ## What is it?
