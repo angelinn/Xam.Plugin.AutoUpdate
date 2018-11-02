@@ -22,7 +22,7 @@ namespace Xam.Plugin.AutoUpdate
         private bool didCheck;
         private readonly Page mainPage;
 
-        private readonly UpdateManagerMode mode;
+        private readonly UpdateMode mode;
 
 #if DEBUG
         public static string AppIDDummy
@@ -41,6 +41,15 @@ namespace Xam.Plugin.AutoUpdate
         }
 #endif
 
+        private static UpdateManager instance;
+        public static void Initialize(UpdateManagerParameters parameters, UpdateMode mode)
+        {
+            if (instance != null)
+                throw new AutoUpdateException("UpdateManager is already initialized.");
+
+            instance = new UpdateManager(parameters, mode);
+        }
+
         private UpdateManager(string title, string message, string confirm, string cancel, Func<Task<UpdatesCheckResponse>> checkForUpdatesFunction, TimeSpan? runEvery = null)
         {
             this.title = title;
@@ -54,10 +63,10 @@ namespace Xam.Plugin.AutoUpdate
             mainPage.Appearing += OnMainPageAppearing;
         }
 
-        public UpdateManager(UpdateManagerParameters parameters, UpdateManagerMode mode)
+        private UpdateManager(UpdateManagerParameters parameters, UpdateMode mode)
             : this(parameters.Title, parameters.Message, parameters.Confirm, parameters.Cancel, parameters.CheckForUpdatesFunction, parameters.RunEvery)
         {
-            if (mode == UpdateManagerMode.MissingNo)
+            if (mode == UpdateMode.MissingNo)
                 throw new AutoUpdateException("You are not supposed to select this mode.");
 
             this.mode = mode;
@@ -84,9 +93,9 @@ namespace Xam.Plugin.AutoUpdate
 
         private async Task CheckForUpdatesAsync()
         {
-            if (mode == UpdateManagerMode.CheckAndAutoInstall)
+            if (mode == UpdateMode.AutoInstall)
                 await CheckAndUpdateAsync();
-            else if (mode == UpdateManagerMode.CheckAndOpenAppStore)
+            else if (mode == UpdateMode.OpenAppStore)
                 await CheckAndOpenAppStoreAsync();
 
             Application.Current.Properties["UpdateManager.LastUpdateTime"] = DateTime.Now;

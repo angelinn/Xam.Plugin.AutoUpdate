@@ -1,0 +1,40 @@
+version: 1.0.{build}
+image: Visual Studio 2017
+build_script:
+- ps: >-
+    $Env:ANDROID_HOME = "C:\\android-sdk-windows"
+
+
+    appveyor DownloadFile https://dl.google.com/android/repository/sdk-tools-windows-3859397.zip
+
+    7z x sdk-tools-windows-3859397.zip -oC:\android-sdk-windows
+
+
+    nuget restore ./src/Xam.Plugin.AutoUpdate/Xam.Plugin.AutoUpdate.csproj
+
+    msbuild ./src/Xam.Plugin.AutoUpdate/Xam.Plugin.AutoUpdate.csproj
+
+
+    nuget restore ./src/Xam.Plugin.AutoUpdate.UWP/Xam.Plugin.AutoUpdate.UWP.csproj
+
+    msbuild ./src/Xam.Plugin.AutoUpdate.UWP/Xam.Plugin.AutoUpdate.UWP.csproj
+
+
+    nuget restore ./src/Xam.Plugin.AutoUpdate.Droid/Xam.Plugin.AutoUpdate.Droid.csproj
+
+    msbuild ./src/Xam.Plugin.AutoUpdate.Droid/Xam.Plugin.AutoUpdate.Droid.csproj
+
+
+    nuget restore ./samples/Samples/Samples.csproj
+
+    msbuild ./samples/Samples/Samples.csproj
+
+
+    nuget restore ./samples/Samples.UWP/Samples.UWP.csproj
+
+    msbuild ./samples/Samples.UWP/Samples.UWP.csproj
+
+
+    nuget restore ./samples/Samples.Android/Samples.Android.csproj
+
+    msbuild ./samples/Samples.Android/Samples.Android.csproj

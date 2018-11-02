@@ -32,15 +32,11 @@ namespace Samples
                 {
                     // check for updates from external url ...
                     await Task.Delay(3000);
-                    return new UpdatesCheckResponse
-                    {
-                        IsNewVersionAvailable = true,
-                        DownloadUrl = downloadUrl
-                    };
+                    return new UpdatesCheckResponse(true, downloadUrl);
                 }
             };
 
-            UpdateManager updateManager = new UpdateManager(parameters, UpdateManagerMode.CheckAndAutoInstall);
+            UpdateManager.Initialize(parameters, UpdateMode.AutoInstall);
         }
 
         protected override void OnStart ()

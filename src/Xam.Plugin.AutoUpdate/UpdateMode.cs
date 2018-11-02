@@ -4,10 +4,10 @@ using System.Text;
 
 namespace Xam.Plugin.AutoUpdate
 {
-    public enum UpdateManagerMode
+    public enum UpdateMode
     {
         MissingNo = -1,
-        CheckAndAutoInstall,
-        CheckAndOpenAppStore
+        AutoInstall,
+        OpenAppStore
     }
 }
