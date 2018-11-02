@@ -52,6 +52,11 @@ AutoUpdate.Init(this, authority);
 
 **NOTE:** The authority value is the same as the **android:authorities** in the ```AndroidManifest``` file.
 
+**NOTE:** Since Android Oreo (API 27), every app needs additional access to install APKs. You *must* add this permission if you wish to support Oreo:
+```xml
+<uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+```
+
 
 ## Usage
 
