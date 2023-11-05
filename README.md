@@ -1,6 +1,7 @@
-# Xam.Plugin.AutoUpdate [In Development] 
+# Xam.Plugin.AutoUpdate
+## This library is not longer supported. If you need some functionality, PRs are accepted.
 
-## Auto update for your Android/UWP - pull requests are accepted
+## Auto update for your Android/UWP
 
 <div class="inline-block" >
   <img style="float: left;" src="https://github.com/angelinn/Xam.Plugin.UpdatePrompt/blob/master/images/update_android.PNG" alt="android" width="220"/>
